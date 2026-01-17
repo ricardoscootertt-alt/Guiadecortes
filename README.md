@@ -3,224 +3,286 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Espaço Vanessa Braga - Projeção de Cortes</title>
+    <title>Espaço Vanessa Braga - Masterclass de Cortes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --rose-primary: #f8c8dc;
-            --rose-dark: #e5a9c0;
-            --gold-cintilante: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            --gold-text: #b38728;
+            --rose-bg: #fffcfd;
+            --rose-light: #fdf2f7;
+            --gold-gradient: linear-gradient(45deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --gold-shine: #d4af37;
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #fff5f8;
-            color: #4a4a4a;
+            background-color: var(--rose-bg);
+            color: #4a3b3b;
         }
 
-        .gold-gradient {
-            background: var(--gold-cintilante);
+        .gold-text {
+            background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            font-weight: bold;
         }
 
         .gold-border {
             border: 2px solid transparent;
-            background-image: linear-gradient(#fff5f8, #fff5f8), var(--gold-cintilante);
+            background-image: linear-gradient(white, white), var(--gold-gradient);
             background-origin: border-box;
             background-clip: content-box, border-box;
         }
 
-        .bg-gold-shine {
-            background: var(--gold-cintilante);
-        }
-
-        .card-rose {
-            background: white;
-            border-radius: 15px;
-            transition: transform 0.3s ease;
-            box-shadow: 0 10px 15px -3px rgba(248, 200, 220, 0.5);
-        }
-
-        .card-rose:hover {
-            transform: translateY(-5px);
-        }
-
-        .nav-link.active {
-            border-bottom: 2px solid #b38728;
+        .gold-btn {
+            background: var(--gold-gradient);
+            color: #4a3b3b;
             font-weight: 600;
+            box-shadow: 0 4px 15px rgba(179, 135, 40, 0.3);
+            transition: all 0.3s ease;
         }
 
-        .angle-circle {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            border: 3px solid #b38728;
-            margin: 0 auto;
+        .gold-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(179, 135, 40, 0.5);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-link.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold-gradient);
+        }
+
+        .custom-scroll::-webkit-scrollbar {
+            width: 5px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #f8c8dc;
+            border-radius: 10px;
+        }
+
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        .shine-effect::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+        }
+        .shine-effect:hover::after {
+            left: 100%;
         }
     </style>
 </head>
 <body>
 
     <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 py-6 flex flex-col items-center">
-            <h1 class="text-4xl font-bold gold-gradient font-serif mb-2" style="font-family: 'Playfair Display', serif;">
-                Espaço Vanessa Braga
-            </h1>
-            <p class="text-xs uppercase tracking-widest text-pink-400">Excelência em Cortes & Visagismo</p>
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 py-4 px-6 border-b border-pink-100">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="text-center md:text-left mb-4 md:mb-0">
+                <h1 class="text-3xl font-serif gold-text" style="font-family: 'Playfair Display', serif;">Espaço Vanessa Braga</h1>
+                <p class="text-[10px] tracking-widest uppercase text-pink-400 font-bold">Projeção • Ângulos • Visagismo</p>
+            </div>
+            <nav class="flex space-x-8 text-xs font-semibold uppercase tracking-tighter">
+                <button onclick="showPage('videoaulas')" class="nav-link active" id="nav-videoaulas">Masterclass</button>
+                <button onclick="showPage('catalogo')" class="nav-link" id="nav-catalogo">Catálogo 50+</button>
+                <button onclick="showPage('tecnica')" class="nav-link" id="nav-tecnica">Ângulos</button>
+            </nav>
         </div>
-        <nav class="flex justify-center space-x-6 pb-4 text-sm overflow-x-auto px-4">
-            <button onclick="showSection('home')" class="nav-link text-gray-600 hover:text-gold-text">Início</button>
-            <button onclick="showSection('catalogo')" class="nav-link text-gray-600 hover:text-gold-text">Catálogo (50+)</button>
-            <button onclick="showSection('tecnica')" class="nav-link text-gray-600 hover:text-gold-text">Projeção e Ângulos</button>
-            <button onclick="showSection('ferramentas')" class="nav-link text-gray-600 hover:text-gold-text">Tesouras</button>
-        </nav>
     </header>
 
-    <main class="max-w-7xl mx-auto px-4 py-8">
-        
-        <!-- SECTION: HOME -->
-        <section id="home" class="block animate-fade-in text-center">
-            <div class="relative rounded-3xl overflow-hidden mb-8 h-80 flex items-center justify-center">
-                <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Salão de Luxo" class="absolute w-full h-full object-cover brightness-50">
-                <div class="relative z-10 text-white p-6">
-                    <h2 class="text-4xl font-bold mb-4">A Arte de Esculpir Fios</h2>
-                    <p class="text-lg mb-6">Transforme-se com a técnica perfeita do Espaço Vanessa Braga.</p>
-                    <button onclick="showSection('catalogo')" class="bg-gold-shine px-8 py-3 rounded-full text-white font-bold shadow-lg hover:scale-105 transition">Explorar Modelos</button>
-                </div>
-            </div>
+    <main class="max-w-7xl mx-auto px-6 py-10">
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="card-rose p-6 border-t-4 border-pink-200">
-                    <h3 class="font-bold text-pink-600 mb-2">Visagismo</h3>
-                    <p class="text-sm">Análise facial para encontrar o corte que realça sua essência.</p>
+        <!-- SEÇÃO: VIDEOAULAS (YOUTUBE LINKS) -->
+        <section id="page-videoaulas" class="block">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                <!-- Player Principal -->
+                <div class="lg:col-span-2">
+                    <div class="video-wrapper gold-border p-1 bg-white">
+                        <iframe id="main-iframe" src="https://www.youtube.com/embed/eL0PmFM-C-w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <div class="mt-6">
+                        <h2 id="current-video-title" class="text-3xl font-serif gold-text">Long Bob: Técnica de Precisão</h2>
+                        <div class="flex gap-4 mt-4">
+                            <span id="tag-angulo" class="bg-pink-100 text-pink-600 px-4 py-1 rounded-full text-xs font-bold">ÂNGULO: 0° e 45°</span>
+                            <span id="tag-tesoura" class="bg-gold-light border border-gold-shine text-gold-shine px-4 py-1 rounded-full text-xs font-bold">TESOURA: Fio Laser</span>
+                        </div>
+                        <p id="video-desc" class="mt-4 text-gray-500 text-sm leading-relaxed">
+                            Aprenda a projeção correta para o Long Bob, mantendo o peso na base e o bico frontal alongado.
+                        </p>
+                    </div>
                 </div>
-                <div class="card-rose p-6 border-t-4 border-pink-200">
-                    <h3 class="font-bold text-pink-600 mb-2">Técnica Avançada</h3>
-                    <p class="text-sm">Uso preciso de ângulos e projeções para caimento natural.</p>
-                </div>
-                <div class="card-rose p-6 border-t-4 border-pink-200">
-                    <h3 class="font-bold text-pink-600 mb-2">Acabamento Premium</h3>
-                    <p class="text-sm">Finalização com produtos de alta performance.</p>
+
+                <!-- Playlist de Aulas Envidadas -->
+                <div class="bg-white rounded-3xl p-6 shadow-xl border border-pink-50">
+                    <h3 class="font-bold text-lg mb-6 flex items-center gap-2">
+                        <span class="text-pink-400">●</span> Conteúdo Programático
+                    </h3>
+                    <div class="space-y-4 max-h-[500px] overflow-y-auto custom-scroll pr-2">
+                        
+                        <!-- Aula 1 -->
+                        <div onclick="changeVideo('eL0PmFM-C-w', 'Long Bob: Técnica de Precisão', '0° e 45°', 'Fio Laser', 'Ideal para quem busca elegância e modernidade com base reta e frente alongada.')" class="flex gap-4 cursor-pointer p-2 hover:bg-pink-50 rounded-xl transition group">
+                            <div class="w-24 h-16 rounded-lg overflow-hidden shrink-0 border-2 border-transparent group-hover:border-gold-shine">
+                                <img src="https://img.youtube.com/vi/eL0PmFM-C-w/0.jpg" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold group-hover:text-gold-shine">Long Bob</h4>
+                                <p class="text-[10px] text-gray-400">Vanessa Braga Academy</p>
+                            </div>
+                        </div>
+
+                        <!-- Aula 2 -->
+                        <div onclick="changeVideo('KpuAPqHyNKU', 'Corte Pixie: Ousadia e Forma', '90° e Graduação', 'Fio Navalha', 'Corte curto focado em nuca batida e topo volumoso para visagismo moderno.')" class="flex gap-4 cursor-pointer p-2 hover:bg-pink-50 rounded-xl transition group">
+                            <div class="w-24 h-16 rounded-lg overflow-hidden shrink-0 border-2 border-transparent group-hover:border-gold-shine">
+                                <img src="https://img.youtube.com/vi/KpuAPqHyNKU/0.jpg" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold group-hover:text-gold-shine">Pixie Cut</h4>
+                                <p class="text-[10px] text-gray-400">Técnicas Curtas</p>
+                            </div>
+                        </div>
+
+                        <!-- Aula 3 -->
+                        <div onclick="changeVideo('Fgi-AILh6Es', 'Butterfly Cut: O Corte Borboleta', '180° e 90°', 'Fio Navalha', 'Sucesso nas redes, focado em camadas altíssimas e muito movimento.')" class="flex gap-4 cursor-pointer p-2 hover:bg-pink-50 rounded-xl transition group">
+                            <div class="w-24 h-16 rounded-lg overflow-hidden shrink-0 border-2 border-transparent group-hover:border-gold-shine">
+                                <img src="https://img.youtube.com/vi/Fgi-AILh6Es/0.jpg" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold group-hover:text-gold-shine">Butterfly Cut</h4>
+                                <p class="text-[10px] text-gray-400">Camadas Extremas</p>
+                            </div>
+                        </div>
+
+                        <!-- Aula 4 -->
+                        <div onclick="changeVideo('nPk5MwGtextured', 'Franja Torcida: O Segredo do Caimento', 'Torção de Ângulo', 'Fio Laser/Navalha', 'Técnica de torção para franjas perfeitas sem marcas.')" class="flex gap-4 cursor-pointer p-2 hover:bg-pink-50 rounded-xl transition group">
+                            <div class="w-24 h-16 rounded-lg overflow-hidden shrink-0 border-2 border-transparent group-hover:border-gold-shine">
+                                <img src="https://img.youtube.com/vi/nPk5MwGtextured/0.jpg" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold group-hover:text-gold-shine">Franja Torcida</h4>
+                                <p class="text-[10px] text-gray-400">Visagismo Frontal</p>
+                            </div>
+                        </div>
+
+                        <!-- Aula 5 -->
+                        <div onclick="changeVideo('BngQhBm8v9c', 'Corte em Camadas Uniformes', '90° em todo o crânio', 'Fio Navalha', 'Remoção de peso e criação de balanço natural em cabelos médios e longos.')" class="flex gap-4 cursor-pointer p-2 hover:bg-pink-50 rounded-xl transition group">
+                            <div class="w-24 h-16 rounded-lg overflow-hidden shrink-0 border-2 border-transparent group-hover:border-gold-shine">
+                                <img src="https://img.youtube.com/vi/BngQhBm8v9c/0.jpg" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold group-hover:text-gold-shine">Corte em Camadas</h4>
+                                <p class="text-[10px] text-gray-400">Movimento Total</p>
+                            </div>
+                        </div>
+
+                        <!-- Aula 6 -->
+                        <div onclick="changeVideo('dplHNmCjMbY', 'Corte em V: Ângulo de Encontro', 'Inclinado / Diagonal', 'Fio Laser', 'Como criar o formato V perfeito sem perder o comprimento nas laterais.')" class="flex gap-4 cursor-pointer p-2 hover:bg-pink-50 rounded-xl transition group">
+                            <div class="w-24 h-16 rounded-lg overflow-hidden shrink-0 border-2 border-transparent group-hover:border-gold-shine">
+                                <img src="https://img.youtube.com/vi/dplHNmCjMbY/0.jpg" class="w-full h-full object-cover">
+                            </div>
+                            <div>
+                                <h4 class="text-xs font-bold group-hover:text-gold-shine">Corte V</h4>
+                                <p class="text-[10px] text-gray-400">Geometria Longa</p>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION: CATALOGO -->
-        <section id="catalogo" class="hidden">
-            <div class="flex justify-between items-center mb-8">
-                <h2 class="text-3xl font-serif gold-text">Catálogo de Inspiração</h2>
-                <div class="flex space-x-2">
-                    <button onclick="filterCuts('todos')" class="bg-pink-100 px-3 py-1 rounded text-xs">Todos</button>
-                    <button onclick="filterCuts('curto')" class="bg-pink-100 px-3 py-1 rounded text-xs">Curtos</button>
-                    <button onclick="filterCuts('medio')" class="bg-pink-100 px-3 py-1 rounded text-xs">Médios</button>
-                    <button onclick="filterCuts('longo')" class="bg-pink-100 px-3 py-1 rounded text-xs">Longos</button>
+        <!-- SEÇÃO: CATALOGO -->
+        <section id="page-catalogo" class="hidden">
+            <div class="flex justify-between items-end mb-10">
+                <div>
+                    <h2 class="text-4xl font-serif gold-text">Inspiração VB</h2>
+                    <p class="text-gray-400 text-sm">Explore mais de 50 variações exclusivas</p>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="filterCuts('todos')" class="bg-white border border-pink-100 px-4 py-1 rounded-full text-[10px] font-bold hover:bg-pink-50">TODOS</button>
+                    <button onclick="filterCuts('curto')" class="bg-white border border-pink-100 px-4 py-1 rounded-full text-[10px] font-bold hover:bg-pink-50">CURTOS</button>
+                    <button onclick="filterCuts('longo')" class="bg-white border border-pink-100 px-4 py-1 rounded-full text-[10px] font-bold hover:bg-pink-50">LONGOS</button>
                 </div>
             </div>
             
-            <div id="grid-cortes" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
-                <!-- Gerado por JS -->
-            </div>
-        </section>
-
-        <!-- SECTION: TECNICA (PROJEÇÃO E ANGULOS) -->
-        <section id="tecnica" class="hidden">
-            <h2 class="text-3xl font-serif gold-text mb-8 text-center">Projeções e Diagramação</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div class="space-y-8">
-                    <div class="flex items-start gap-4">
-                        <div class="angle-circle shrink-0 bg-white">0°</div>
-                        <div>
-                            <h4 class="font-bold text-lg">Forma Sólida (Base Reta)</h4>
-                            <p class="text-sm text-gray-600">O cabelo é cortado em sua queda natural. Cria peso e linhas horizontais ou inclinadas definidas.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <div class="angle-circle shrink-0 bg-white">45°</div>
-                        <div>
-                            <h4 class="font-bold text-lg">Graduação (Chanel/Bob)</h4>
-                            <p class="text-sm text-gray-600">Cria expansão de volume e sobreposição controlada. Ideal para nucas batidas e volume médio.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <div class="angle-circle shrink-0 bg-white">90°</div>
-                        <div>
-                            <h4 class="font-bold text-lg">Camadas Uniformes</h4>
-                            <p class="text-sm text-gray-600">O cabelo é projetado perpendicularmente à cabeça. Remove peso e cria movimento uniforme.</p>
-                        </div>
-                    </div>
-                    <div class="flex items-start gap-4">
-                        <div class="angle-circle shrink-0 bg-white">180°</div>
-                        <div>
-                            <h4 class="font-bold text-lg">Camadas Aumentadas</h4>
-                            <p class="text-sm text-gray-600">Projeção totalmente para o topo. Mantém o comprimento na base e cria camadas longas no topo.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-white p-6 rounded-3xl gold-border flex flex-col items-center justify-center text-center">
-                    <h3 class="text-xl font-bold mb-4">Esquema Técnico de Visagismo</h3>
-                    <div class="w-full max-w-xs aspect-square border-2 border-dashed border-pink-300 rounded-full flex items-center justify-center relative mb-4">
-                        <div class="absolute w-full h-px bg-pink-200"></div>
-                        <div class="absolute h-full w-px bg-pink-200"></div>
-                        <div class="z-10 bg-white p-4 rounded-full border border-gold-text">
-                            <span class="text-xs font-bold">PONTO DE<br>EQUILÍBRIO</span>
-                        </div>
-                        <div class="absolute top-0 -translate-y-6 text-xs text-gold-text font-bold">180° TOP</div>
-                        <div class="absolute right-0 translate-x-10 text-xs text-gold-text font-bold">90° LATERAL</div>
-                        <div class="absolute bottom-0 translate-y-6 text-xs text-gold-text font-bold">0° QUEDA NATURAL</div>
-                    </div>
-                    <p class="text-xs italic text-gray-500">A angulação define onde o volume se concentra no rosto da cliente.</p>
-                </div>
+            <div id="grid-container" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+                <!-- Dinâmico via JS -->
             </div>
         </section>
 
-        <!-- SECTION: FERRAMENTAS -->
-        <section id="ferramentas" class="hidden">
-            <h2 class="text-3xl font-serif gold-text mb-8 text-center">O Poder da Ferramenta</h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Tesoura Fio Laser -->
-                <div class="card-rose p-8 text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 bg-pink-50 rounded-full flex items-center justify-center">
-                        <svg viewBox="0 0 24 24" class="w-8 h-8 fill-gold-text"><path d="M19,3L13,9L15,11L21,5L19,3M11,11L3,19L5,21L13,13L11,11Z"/></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Tesoura Fio Laser</h3>
-                    <p class="text-sm text-gray-600 mb-4">Possui micro-serrilhas que "prendem" o cabelo na lâmina.</p>
-                    <div class="bg-pink-50 p-3 rounded text-xs text-pink-700 font-bold">
-                        USO: Cortes de base reta, cortes masculinos clássicos e finalizações de precisão absoluta.
-                    </div>
-                </div>
-
-                <!-- Tesoura Fio Navalha -->
-                <div class="card-rose p-8 text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 bg-pink-50 rounded-full flex items-center justify-center">
-                        <svg viewBox="0 0 24 24" class="w-8 h-8 fill-gold-text"><path d="M17,2L14,5L16.5,7.5L19.5,4.5L17,2M10,9L3,16L5,18L12,11L10,9Z"/></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Tesoura Fio Navalha</h3>
-                    <p class="text-sm text-gray-600 mb-4">Lâminas polidas extremamente afiadas como uma navalha.</p>
-                    <div class="bg-pink-50 p-3 rounded text-xs text-pink-700 font-bold">
-                        USO: Desfiar, repicar, criar leveza, "slice" (deslizar) e tirar volume sem marcar as camadas.
-                    </div>
-                </div>
-
-                <!-- Tesoura Dentada -->
-                <div class="card-rose p-8 text-center">
-                    <div class="w-16 h-16 mx-auto mb-4 bg-pink-50 rounded-full flex items-center justify-center">
-                        <svg viewBox="0 0 24 24" class="w-8 h-8 fill-gold-text"><path d="M12,2L4,10L12,18L20,10L12,2Z"/></svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-2">Tesoura Dentada/Estatística</h3>
-                    <p class="text-sm text-gray-600 mb-4">Possui dentes em uma ou ambas as lâminas.</p>
-                    <div class="bg-pink-50 p-3 rounded text-xs text-pink-700 font-bold">
-                        USO: Texturização, remover volume em cabelos muito densos e suavizar marcas de transição.
+        <!-- SEÇÃO: TÉCNICA -->
+        <section id="page-tecnica" class="hidden">
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-[40px] p-10 shadow-2xl gold-border relative">
+                    <h2 class="text-3xl font-serif text-center mb-10 gold-text">Diagramação Técnica de Ângulos</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        <div class="space-y-8">
+                            <div class="border-l-4 border-pink-200 pl-6">
+                                <h4 class="text-gold-shine font-bold text-xl">0° - Sólido</h4>
+                                <p class="text-sm text-gray-500">Corte na queda natural. Cria linhas de peso e bases retas (Blunt Cut).</p>
+                            </div>
+                            <div class="border-l-4 border-pink-200 pl-6">
+                                <h4 class="text-gold-shine font-bold text-xl">45° - Graduado</h4>
+                                <p class="text-sm text-gray-500">Cria volume médio. Essencial para Chanéis e Bobs clássicos.</p>
+                            </div>
+                            <div class="border-l-4 border-pink-200 pl-6">
+                                <h4 class="text-gold-shine font-bold text-xl">90° - Camadas</h4>
+                                <p class="text-sm text-gray-500">Remove peso sem perder o comprimento. Camadas uniformes.</p>
+                            </div>
+                            <div class="border-l-4 border-pink-200 pl-6">
+                                <h4 class="text-gold-shine font-bold text-xl">180° - Longas</h4>
+                                <p class="text-sm text-gray-500">Projeção para o topo. Camadas ativadas com base pesada.</p>
+                            </div>
+                        </div>
+                        <div class="flex flex-col items-center justify-center">
+                            <div class="w-64 h-64 rounded-full border-4 border-dashed border-pink-200 flex items-center justify-center relative bg-pink-50/30">
+                                <div class="absolute w-full h-px bg-pink-200"></div>
+                                <div class="absolute h-full w-px bg-pink-200"></div>
+                                <div class="bg-white p-4 rounded-full shadow-lg z-10 border border-gold-shine">
+                                    <span class="text-[10px] font-bold text-center block">FOCO<br>VB</span>
+                                </div>
+                                <!-- Ângulos em volta -->
+                                <div class="absolute -top-6 font-bold gold-text">180°</div>
+                                <div class="absolute -right-10 font-bold gold-text">90°</div>
+                                <div class="absolute -bottom-6 font-bold gold-text">0°</div>
+                                <div class="absolute -left-10 font-bold gold-text">90°</div>
+                            </div>
+                            <p class="mt-10 text-xs text-gray-400 italic">Cada grau determina o balanço final da fibra capilar.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -228,131 +290,70 @@
     </main>
 
     <!-- Footer -->
-    <footer class="mt-20 py-12 bg-white border-t border-pink-100 text-center">
-        <p class="gold-text font-serif text-xl">Vanessa Braga</p>
-        <p class="text-gray-400 text-xs mt-2 italic">A beleza está nos detalhes de cada ângulo.</p>
+    <footer class="mt-20 py-20 bg-white border-t border-pink-50 text-center">
+        <div class="gold-text text-4xl font-serif mb-4">VB</div>
+        <p class="text-gray-400 text-xs tracking-widest uppercase">Espaço Vanessa Braga • © 2024</p>
     </footer>
 
-    <!-- Modal para Detalhes do Corte -->
-    <div id="modal-corte" class="fixed inset-0 bg-black/80 hidden z-[100] flex items-center justify-center p-4">
-        <div class="bg-white rounded-3xl max-w-lg w-full p-8 relative">
-            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-pink-500 text-2xl">&times;</button>
-            <div id="modal-content"></div>
-        </div>
-    </div>
-
     <script>
-        const cortes = [
-            // CURTOS
-            { id: 1, nome: "Pixie Moderno", cat: "curto", angulo: "90°", tesoura: "Fio Navalha", img: "https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&fit=crop&w=400&q=80" },
-            { id: 2, nome: "Buzz Cut Feminino", cat: "curto", angulo: "0°", tesoura: "Máquina/Fio Laser", img: "https://images.unsplash.com/photo-1505148230895-d9a7a67386fb?auto=format&fit=crop&w=400&q=80" },
-            { id: 3, nome: "Short Bob", cat: "curto", angulo: "45°", tesoura: "Fio Laser", img: "https://images.unsplash.com/photo-1592139932924-633049755152?auto=format&fit=crop&w=400&q=80" },
-            { id: 4, nome: "Nuca Batida", cat: "curto", angulo: "45° e 90°", tesoura: "Fio Navalha", img: "https://images.unsplash.com/photo-1552046122-03184de85e08?auto=format&fit=crop&w=400&q=80" },
-            { id: 5, nome: "Undercut Artístico", cat: "curto", angulo: "Variado", tesoura: "Máquina", img: "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=400&q=80" },
-            
-            // MÉDIOS
-            { id: 6, nome: "Long Bob (Lob)", cat: "medio", angulo: "0° e 45°", tesoura: "Fio Laser", img: "https://images.unsplash.com/photo-1516914943479-89db7d9ae7f2?auto=format&fit=crop&w=400&q=80" },
-            { id: 7, nome: "Shaggy Hair", cat: "medio", angulo: "90° e 180°", tesoura: "Fio Navalha", img: "https://images.unsplash.com/photo-1542438823-9993309a62ba?auto=format&fit=crop&w=400&q=80" },
-            { id: 8, nome: "Blunt Cut Médio", cat: "medio", angulo: "0°", tesoura: "Fio Laser", img: "https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&w=400&q=80" },
-            { id: 9, nome: "Chanel de Bico", cat: "medio", angulo: "45°", tesoura: "Fio Laser", img: "https://images.unsplash.com/photo-1495385794356-15371f348c31?auto=format&fit=crop&w=400&q=80" },
-            { id: 10, nome: "Médio Repicado", cat: "medio", angulo: "90°", tesoura: "Dentada (Finalização)", img: "https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=400&q=80" },
-
-            // LONGOS
-            { id: 11, nome: "U-Shape Cut", cat: "longo", angulo: "0°", tesoura: "Fio Laser", img: "https://images.unsplash.com/photo-1560869713-7d0a29430863?auto=format&fit=crop&w=400&q=80" },
-            { id: 12, nome: "V-Shape Cut", cat: "longo", angulo: "0°", tesoura: "Fio Laser", img: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&w=400&q=80" },
-            { id: 13, nome: "Camadas Butterfly", cat: "longo", angulo: "180°", tesoura: "Fio Navalha", img: "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?auto=format&fit=crop&w=400&q=80" },
-            { id: 14, nome: "Longo Reto", cat: "longo", angulo: "0°", tesoura: "Fio Laser", img: "https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&fit=crop&w=400&q=80" },
-            { id: 15, nome: "Longo com Franja", cat: "longo", angulo: "Variado", tesoura: "Fio Navalha", img: "https://images.unsplash.com/photo-1582095133179-bfd08e2fc6b3?auto=format&fit=crop&w=400&q=80" }
-        ];
-
-        // Adicionando mocks para chegar a 50 itens de forma dinâmica para demonstração
-        for(let i=16; i<=55; i++) {
-            const types = ["curto", "medio", "longo"];
-            const type = types[Math.floor(Math.random()*3)];
+        // Dados dos Cortes (50+)
+        const cortes = [];
+        const nomes = ["Butterfly", "Shaggy", "Blunt", "Pixie", "Bob", "Long Bob", "Camadas", "Corte V", "U-Shape", "French Bob"];
+        
+        for(let i=1; i<=60; i++) {
+            const cat = i % 2 === 0 ? "curto" : "longo";
+            const nomeBase = nomes[Math.floor(Math.random() * nomes.length)];
             cortes.push({
                 id: i,
-                nome: `Variação de Corte ${i}`,
-                cat: type,
-                angulo: i % 2 === 0 ? "90°" : "180°",
-                tesoura: i % 3 === 0 ? "Fio Navalha" : "Fio Laser",
-                img: `https://images.unsplash.com/photo-1560869713-7d0a29430863?auto=format&fit=crop&w=400&q=80&sig=${i}`
+                nome: `${nomeBase} Estilo ${i}`,
+                cat: cat,
+                img: `https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=400&q=80&sig=${i}`
             });
         }
 
-        function showSection(id) {
+        function showPage(id) {
             document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden'));
-            document.getElementById(id).classList.remove('hidden');
+            document.getElementById(`page-${id}`).classList.remove('hidden');
             
-            // Update nav styles
             document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-            event?.target?.classList?.add('active');
+            document.getElementById(`nav-${id}`).classList.add('active');
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        function changeVideo(id, title, angulo, tesoura, desc) {
+            document.getElementById('main-iframe').src = `https://www.youtube.com/embed/${id}?autoplay=1`;
+            document.getElementById('current-video-title').innerText = title;
+            document.getElementById('tag-angulo').innerText = `ÂNGULO: ${angulo}`;
+            document.getElementById('tag-tesoura').innerText = `TESOURA: ${tesoura}`;
+            document.getElementById('video-desc').innerText = desc;
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
         function renderCortes(list) {
-            const grid = document.getElementById('grid-cortes');
-            grid.innerHTML = '';
-            list.forEach(corte => {
-                const div = document.createElement('div');
-                div.className = "card-rose p-2 cursor-pointer group";
-                div.onclick = () => openModal(corte);
-                div.innerHTML = `
-                    <div class="relative aspect-square rounded-xl overflow-hidden mb-2">
-                        <img src="${corte.img}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-pink-500/80 to-transparent p-2">
-                            <span class="text-[10px] text-white font-bold uppercase">${corte.cat}</span>
+            const container = document.getElementById('grid-container');
+            container.innerHTML = '';
+            list.forEach(c => {
+                container.innerHTML += `
+                    <div class="shine-effect bg-white p-2 rounded-2xl shadow-sm border border-pink-50 cursor-pointer group">
+                        <div class="aspect-[3/4] overflow-hidden rounded-xl mb-2">
+                            <img src="${c.img}" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                        </div>
+                        <h5 class="text-[10px] font-bold text-gray-600 truncate px-1">${c.nome}</h5>
+                        <div class="flex justify-between items-center px-1 mt-1">
+                            <span class="text-[8px] text-pink-300 font-bold uppercase">${c.cat}</span>
+                            <span class="text-[8px] text-gold-shine">Ver Detalhes →</span>
                         </div>
                     </div>
-                    <h4 class="text-xs font-bold text-gray-700 truncate">${corte.nome}</h4>
                 `;
-                grid.appendChild(div);
             });
         }
 
         function filterCuts(cat) {
-            if(cat === 'todos') {
-                renderCortes(cortes);
-            } else {
-                const filtered = cortes.filter(c => c.cat === cat);
-                renderCortes(filtered);
-            }
+            if(cat === 'todos') renderCortes(cortes);
+            else renderCortes(cortes.filter(c => c.cat === cat));
         }
 
-        function openModal(corte) {
-            const modal = document.getElementById('modal-corte');
-            const content = document.getElementById('modal-content');
-            content.innerHTML = `
-                <div class="text-center">
-                    <img src="${corte.img}" class="w-48 h-48 mx-auto rounded-full object-cover border-4 border-pink-100 mb-6">
-                    <h3 class="text-2xl font-serif gold-text mb-4">${corte.nome}</h3>
-                    
-                    <div class="grid grid-cols-2 gap-4 mb-6">
-                        <div class="bg-pink-50 p-4 rounded-2xl">
-                            <p class="text-[10px] text-pink-400 uppercase font-bold">Ângulo de Corte</p>
-                            <p class="text-lg font-bold text-gray-700">${corte.angulo}</p>
-                        </div>
-                        <div class="bg-pink-50 p-4 rounded-2xl">
-                            <p class="text-[10px] text-pink-400 uppercase font-bold">Instrumento</p>
-                            <p class="text-lg font-bold text-gray-700">${corte.tesoura}</p>
-                        </div>
-                    </div>
-
-                    <div class="text-left space-y-3">
-                        <h4 class="font-bold text-pink-600">Prescrição Técnica:</h4>
-                        <p class="text-sm text-gray-600">Para o <strong>${corte.nome}</strong>, iniciamos com a diagramação em quadrantes. A projeção a ${corte.angulo} garante o caimento ideal para o tipo de rosto oval ou triangular.</p>
-                        <p class="text-sm text-gray-600">A finalização com <strong>${corte.tesoura}</strong> permite que as pontas tenham ${corte.tesoura.includes('Navalha') ? 'desfiação e leveza' : 'selagem e precisão'}.</p>
-                    </div>
-
-                    <button onclick="closeModal()" class="mt-8 bg-gold-shine text-white px-10 py-2 rounded-full font-bold">Fechar Detalhes</button>
-                </div>
-            `;
-            modal.classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('modal-corte').classList.add('hidden');
-        }
-
-        // Initialize
+        // Init
         window.onload = () => {
             renderCortes(cortes);
         };
