@@ -206,7 +206,7 @@ Técnica de Finalização:"></textarea>
                 category: "Longo", 
                 scissors: "Fio Laser", 
                 angle: "45° em direção ao centro da coluna", 
-                video: "https://youtu.be/dxh5F4cpfVB?si=F44f4nZzVBw61vpd" 
+                video: "https://youtu.be/dxh5F4cpfVU?si=mJJaUA_q6Zg-Y3yu" 
             }
         ];
 
