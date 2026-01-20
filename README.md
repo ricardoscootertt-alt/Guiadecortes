@@ -202,12 +202,12 @@ Observações Técnicas..."></textarea>
         ];
 
         const baseDetalhes = {
-            "Long Bob": { scissors: "Fio Navalha (leveza) ou Laser (precisão)", angle: "0° base, 45° laterais", video: "https://youtu.be/eL0PmFM-C-w" },
-            "Pixie": { scissors: "Fio Laser e Desbaste", angle: "90° topo, 0° nuca", video: "https://youtu.be/KpuAPqHuNKU" },
-            "Butterfly Cut": { scissors: "Fio Navalha", angle: "135° a 180° (elevação alta)", video: "https://youtu.be/Fgi-AILh6Es" },
-            "Franja Torcida": { scissors: "Fio Laser", angle: "0° com torção técnica", video: "https://youtu.be/nPk5MwGhtm8" },
-            "Corte em Camada": { scissors: "Fio Navalha ou Dentada", angle: "90° a 180°", video: "https://youtu.be/BngQhBm8v9c" },
-            "Corte V": { scissors: "Fio Laser", angle: "45° direção ao centro", video: "https://youtu.be/dplHNmCjMbY" }
+            "Long Bob": { scissors: "Fio Navalha (leveza) ou Laser (precisão)", angle: "0° base, 45° laterais", video: "https://youtu.be/eL0PmFM-C-w?si=Rp6p54MGCKFJFCsj" },
+            "Pixie": { scissors: "Fio Laser e Desbaste", angle: "90° topo, 0° nuca", video: "https://youtu.be/H1yCl7E4u8g?si=ZtA6Dao29S4qcWMP" },
+            "Butterfly Cut": { scissors: "Fio Navalha", angle: "135° a 180° (elevação alta)", video: "https://youtu.be/Bw7LEmx7eoQ?si=0H1IQbVyG1zisyrl" },
+            "Franja Torcida": { scissors: "Fio Laser", angle: "0° com torção técnica", video: "https://youtube.com/shorts/MYKoEfkDKZs?si=pr5sLRbQlRgTZsMm" },
+            "Corte em Camada": { scissors: "Fio Navalha ou Dentada", angle: "90° a 180°", video: "https://youtu.be/BngQhBm8v9c?si=CJVKufG1DtUzncmw" },
+            "Corte V": { scissors: "Fio Laser", angle: "45° direção ao centro", video: "https://youtu.be/dxh5F4cpfVU?si=F44f4nZzVBw61vpd" }
         };
 
         let allCortes = [];
